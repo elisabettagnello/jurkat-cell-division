@@ -1,0 +1,6 @@
+numpy
+pandas
+scipy
+matplotlib
+fcsparser   # only to read raw .fcs files
+pytest
