@@ -1,0 +1,54 @@
+# Configuration for the synthetic demo data (python scripts/make_synthetic_data.py).
+# For real data, copy this file and set the paths, channels and gate values
+# chosen by inspecting the gating figures.
+
+[input]
+events = "data/synthetic/events.csv"   # one row per event, with an Exp column
+times  = "data/synthetic/times.csv"    # Exp, minutes since the first sample
+
+[channels]
+fsc = "FSC-A"         # forward scatter: size proxy
+ssc = "SSC-A"         # side scatter: internal complexity
+dye = "PE-A"          # proliferation dye (CellTrace Yellow)
+dna = "V450-A"        # DAPI area: DNA content
+dna_width = "V450-W"  # DAPI pulse width: doublet discrimination
+
+[gates]
+plot_exp = "Exp5"
+
+[gates.scatter]  # polygon in the FSC-A / SSC-A plane, excludes debris
+vertices = [[50000, 20000], [260000, 90000], [260000, 200000], [50000, 60000]]
+
+[gates.dapi]
+slope = 1.0        # aggregates: remove events above dna = slope * (fsc - x0) + y0
+x0 = 0
+y0 = 60000
+area_low = 30000   # noise
+area_high = 120000
+width_low = 72000  # doublets have a wider DAPI pulse
+width_high = 88000
+
+[generations]
+# Generations present in each sample. Unless listed in per_exp, the number of
+# peaks is chosen by BIC and labels are tracked from one time point to the next
+# (the first sample is assumed to be the sorted generation 0).
+max_generation = 8
+max_components = 4
+# delta = 1.0      # uncomment to fix the spacing between generations (log2 units)
+# [generations.per_exp]
+# Exp0 = [0]
+
+[partitioning]
+exclude_exps = ["Exp0"]   # the sorted starting population only contains generation 0
+min_count = 200           # ignore generations with fewer cells in a sample
+
+[cell_cycle]
+min_events = 2000
+fit = { bin_width = 225.0, x_max = 120000.0, x_min_signal = 30000.0 }
+
+[growth]
+alpha_exps = ["Exp3", "Exp4", "Exp5", "Exp6", "Exp7", "Exp8", "Exp9"]
+rate_exps  = ["Exp4", "Exp5", "Exp6", "Exp7", "Exp8", "Exp9"]
+
+[output]
+dir = "results/synthetic"
