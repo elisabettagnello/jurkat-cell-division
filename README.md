@@ -21,7 +21,7 @@ time point a fixed aliquot was stained with DAPI to measure DNA content.
 
 - [Internship report (PDF)](report/Internship_report_IIT.pdf)
 - [Slides](https://elisabettagnello.github.io/jurkat-cell-division/presentation/)
-- 
+  
 ## Analysis pipeline
 
 | Step | Method | Module |
