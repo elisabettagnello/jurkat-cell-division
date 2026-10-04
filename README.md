@@ -17,6 +17,11 @@ narrow, bright starting population (generation 0) was isolated by fluorescence-a
 (FACS). Samples were measured three times a day for three days, over two independent weeks. At each
 time point a fixed aliquot was stained with DAPI to measure DNA content.
 
+## Materials
+
+- [Internship report (PDF)](report/Internship_report_IIT.pdf)
+- [Slides](https://elisabettagnello.github.io/jurkat-cell-division/presentation/)
+- 
 ## Analysis pipeline
 
 | Step | Method | Module |
